@@ -1,11 +1,25 @@
 # SneakerBot
- Sneaker prices (retail and resell) scraper that provides analysis on resell potential
+ Sneaker prices (retail and resell) webscraper that provides analysis on resell potential
 
 ## Main Features
 
 This is an script that sends alerts for sneaker drops to users on Discord and SMS. It provides information from multiple sites on the retail price, resell price, and the profitability of each shoe. As resell sites charge fees and shipping, it factors that in, too. The sites it scrapes are Nike SNKRS, Yeezy (Adidas) (depreciated), and Snipes (a popular third party seller). The resell site it gets data from is StockX, one of the most popular sites for sneakerheads. See [Nike](#nike-snkrs-alerts) Alerts, [Yeezy](#yeezy-alerts) Alerts, [Snipes](#snipes-alerts) Alerts, and [SMS](#sms-alerts) Alerts for specific information on these sites. 
 
+### Redesign Goals
+
 Note: As this was written when I was in 10th grade, I didn't follow certain design practices that I would now. as such, I plan to rewrite it in the near future.
+
+When scraping Nike, Yeezy, and Snipes, due to a lack of APIs, important information is identified by XPath, which creates issues if the pages are changed in almost any way. As such, I plan to create a solution that dynamically identifies important information to reduce the likelyhood of errors.
+
+Additionally, I plan to clean and split up the code in order to improve readability and ease of debugging.
+
+---
+
+## SMS Alerts
+
+Each text alert provides the cost of the shoe, the optimal shoe to buy, and the estimated profit. To avoid spam, text alerts are only sent for non-profitable shoes. Texts are sent through the smtplib package and the celluar provider's email to text service. (ex. (123)-456-7890 of verizon goes to 1234567890@vtext.com)
+
+<img src="examples/Text_Example.png" alt="Example of a Text Alert" width="350"/>
 
 ---
 
@@ -30,12 +44,3 @@ Adidas no longer carries Yeezy merchandise and as such, this feature has been de
 Snipes is a third party seller of athletic and designer wear, mainly Nike. Snipes' schedule is the same as Nike's, so it sends alerts 5 minutes after Nike alerts release. 
 
 <img src="examples/Snipes_Example.png" alt="Example of a Snipes Alert" width="350"/>
-
----
-
-## SMS Alerts
-
-Each text alert provides the cost of the shoe, the optimal shoe to buy, and the estimated profit. To avoid spam, text alerts are only sent for non-profitable shoes. Texts are sent through the smtplib package and the celluar provider's email to text service. (ex. (123)-456-7890 of verizon goes to 1234567890@vtext.com)
-
-<img src="examples/Text_Example.png" alt="Example of a Text Alert" width="350"/>
-
