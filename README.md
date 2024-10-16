@@ -3,38 +3,38 @@
 
 ## Main Features
 
-This is an script that sends alerts for sneaker drops to users on Discord and SMS. It provides information from multiple sites on the retail price, resell price, and the profitability of each shoe. As resell sites charge fees and shipping, it factors that in, too. The main sites it scrapes are Nike, Yeezy (Adidas), and Snipes (a popular third party seller). See /Nike-Alerts, /Yeezy-Alerts and /Snipes-Alerts for specific information on each site. The two main resell sites it gets data from are GOAT (Alias) and StockX, two of the most popular sites for sneakerheads.
+This is an script that sends alerts for sneaker drops to users on Discord and SMS. It provides information from multiple sites on the retail price, resell price, and the profitability of each shoe. As resell sites charge fees and shipping, it factors that in, too. The sites it scrapes are Nike SNKRS, Yeezy (Adidas) (depreciated), and Snipes (a popular third party seller). The resell site it gets data from is StockX, one of the most popular sites for sneakerheads. See [Nike](#nike-alerts-discord) Alerts, [Yeezy](#yeezy-alerts-discord) Alerts, [Snipes](#snipes-alerts-discord) Alerts, and [SMS](#sms-alerts-sms) Alerts for specific information on these sites. 
 
 Note: As this was written when I was in 10th grade, I didn't follow certain design practices that I would now. as such, I plan to rewrite it in the near future.
 
-### General Alerts (SMS)
-Description of the feature. Include any important details that help understand what this feature does.
+### Nike [SNKRS](https://www.nike.com/launch) Alerts
 
-![Example of a Text Alert](examples/Text_Example.png)
+Every 24 hours the script requests Nike's upcoming releases in an HTTPS request using Selenium. Identifying every shoe dropping that day, it iterates through each listing and records the shoe's retail price and SKU (stock keeping unit). Then, through an unofficial API, it requests the resell prices on StockX and chooses which size, if any, is the best to purchase.  
 
----
-
-### Nike Alerts (Discord)
-Description of the feature. Explain why it's important or how it enhances your project.
-
-![Example of a Nike Alert](examples/Nike_Example.png)
+<img src="examples/Nike_Example.png" alt="Example of a Nike Alert" width="350"/>
 
 ---
 
-### Yeezy Alerts (Discord)
-Description of the feature. Highlight the functionality it brings to the project.
+### Yeezy Alerts
 
-![Example of a Yeezy Alert](examples/Yeezy_Example.png)
+Adidas no longer carries Yeezy merchandise and as such, this feature has been depreciated in version 0.3.3. Before Adidas dropped Yeezy, the script scraped Nike's upcoming releases in an HTTPS request using Selenium & compared the data to StockX, much like the Nike alerts.
+
+<img src="examples/Yeezy_Example.png" alt="Example of a Yeezy Alert" width="350"/>
 
 ---
 
-## Getting Started
+### [Snipes](https://www.snipesusa.com/) Alerts
 
-Explain how to set up the project on a local machine. Include any prerequisites and installation steps.
+Snipes is a third party seller of athletic and designer wear, mainly Nike. Snipes' schedule is the same as Nike's, so it sends alerts 5 minutes after Nike alerts release. 
 
-```bash
-# Example installation commands
-git clone https://github.com/your-username/your-repo.git
-cd your-repo
-npm install
-npm start
+<img src="examples/Snipes_Example.png" alt="Example of a Snipes Alert" width="350"/>
+
+---
+
+### SMS Alerts
+
+Each text alert provides the cost of the shoe, the optimal shoe to buy, and the estimated profit. To avoid spam, text alerts are only sent for non-profitable shoes. Texts are sent through the smtplib package and the celluar provider's email to text service. (ex. (123)-456-7890 of verizon goes to 1234567890@vtext.com)
+
+<img src="examples/Text_Example.png" alt="Example of a Text Alert" width="350"/>
+
+---
